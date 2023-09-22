@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="/js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>
+      Hello, {{name}}!
+<!--      <div>{{xxx}}</div>-->
+    </h1>
+
+    <ul>
+      <li v-for="p in persons" :key="p.id" :style="{color: color(p.age)}">
+
+        {{p.name}} - {{p.age}}
+      </li>
+    </ul>
+    <input v-xxx="name">
+  </div>
+  <script type="text/javascript">
+    // Vue.config.productionTip = false
+
+    async function s1() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(3)
+        }, 1000)
+      })
+    }
+
+    const vm = new Vue({
+      // el: '#root',
+      data: {
+        name: 'LeeHow',
+        persons: [
+          {id: '1', name: 'jack', age: 12},
+          {id: '2',name: 'tome', age: 13},
+          {id: '3',name: 'green', age: 11}
+        ]
+      },
+      computed: {
+        // async xxx(val) {
+        //   const a = await s1()
+        //   return a
+        // }
+      },
+      methods: {
+        color(age) {
+          return age >= 12 ? 'cyan' : 'magenta'
+        }
+      },
+      directives: {
+        xxx(ele, binding, vnode) {
+          console.log(vnode)
+          ele.value = binding.value
+        }
+      }
+    })
+    vm.$mount('#root')
+
+
+    /**
+     * 字符串class 适用于类名不确定，需要动态指定
+     * 数组class 适用于类名个数不确定，名字也不确定
+     * 对象class 适用于类名个数确定，名字也确定
+     *
+     * 对象style
+     * 数组style
+     *
+     *
+     *
+     * */
+  </script>
+</body>
+</html>
